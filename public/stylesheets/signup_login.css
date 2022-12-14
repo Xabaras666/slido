@@ -1,0 +1,65 @@
+.signup_login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: #44475a;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup_login label {
+    margin: auto 0.5rem;
+}
+
+.signup_login input {
+    margin-top: 10px;
+    padding: 0 5px;
+    background: #282a36;
+    border: none;
+    outline: none;
+    color: #f8f8f2;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+#description {
+    font-family: 'Fira Code', monospace;
+    margin-top: 10px;
+    padding: 5px 5px;
+    background: #282a36;
+    border: none;
+    outline: none;
+    color: #f8f8f2;
+    height: 5rem;
+    width: 98%;
+    font-size: 1rem;
+}
+.signup_login button {
+     background: #44475a;
+     border: none
+ }
+.signup_login button img {
+    margin-top: 1rem;
+    height: 40px;
+}
+
+
+@media (max-width: 600px) {
+    .signup_login {
+        width: 80%;
+    }
+    .field {
+        flex-direction: column;
+    }
+    .signup_login label {
+        margin-top: 1rem;
+    }
+}

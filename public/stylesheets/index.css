@@ -1,0 +1,31 @@
+.code_input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: #44475a;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 2em;
+}
+.code_input input {
+    margin-top: 10px;
+    padding: 0 5px;
+    background: #282a36;
+    border: none;
+    outline: none;
+    color: #f8f8f2;
+    height: 3rem;
+    width: 10rem;
+    font-size: 2rem;
+}
+
+.code_input button {
+    background: #44475a;
+    border: none
+}
+
+.code_input img {
+    height: 30px;
+}
