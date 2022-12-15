@@ -10,6 +10,10 @@
     font-size: 1.2em;
 }
 
+.signup_login li {
+    color: #ff5555;
+}
+
 .field {
     display: flex;
     justify-content: space-between;
@@ -51,6 +55,10 @@
     height: 40px;
 }
 
+.signup_login a {
+    text-decoration: none;
+    color: #6272a4;
+}
 
 @media (max-width: 600px) {
     .signup_login {
