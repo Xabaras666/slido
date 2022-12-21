@@ -7,3 +7,7 @@ body {
   color: #bd93f9;
   font-family: 'Fira Code', monospace;
 }
+
+.comment {
+  color: #6272a4;
+}

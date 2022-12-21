@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/bar.css">
+    <link rel="stylesheet" href="/stylesheets/lecture.css">
+  </head>
+  <body>
+    <div class="top_bar">
+      <div class="left_leaning">
+        <a href="/">Slido</a>
+      </div>
+      <div class="right_leaning">
+        <a href="/"><img src="/images/logout.png" alt="logout"></a>
+      </div>
+    </div>
+
+  <div id="description" class="container">
+    <h2><%=title%></h2>
+    <p class="comment"><%=creation_date%></p>
+    <p class="comment"><%=ending_date%></p>
+  </div>
+
+  <div class="container" id="chat">
+
+  </div>
+
+
+  </body>
+</html>

@@ -18,8 +18,6 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   let { email, first_name, last_name, password, re_password, description} = req.body;
 
-  console.log({email, first_name, last_name, password, re_password, description});
-
   let errors = [];
 
   if(!email || !first_name || !last_name || !password || !re_password) {
@@ -38,7 +36,6 @@ router.post('/signup', async (req, res, next) => {
     // FORM VALIDATION HAS PASSED
 
     let hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword)
 
     pool.query(
         `SELECT * FROM lecturer
@@ -46,7 +43,6 @@ router.post('/signup', async (req, res, next) => {
           if(err) {
             throw err;
           }
-          console.log(results.rows);
 
           if(results.rows.length > 0) {
             errors.push({message: "Email already registered!"})
@@ -62,7 +58,6 @@ router.post('/signup', async (req, res, next) => {
                   if(err) {
                     throw err;
                   }
-                  console.log(results.rows);
                   req.flash('success_msg', "You are now registered. Please log in");
                   res.redirect('/login');
                 }

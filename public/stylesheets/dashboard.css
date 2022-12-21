@@ -1,0 +1,25 @@
+.container {
+    background: #44475a;
+    margin: 15px;
+    padding: 20px;
+
+}
+
+#about_user {
+    display: flex;
+}
+
+#profile_pic {
+    margin-left: 20px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: #8be9fd solid 2px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #8be9fd;
+}

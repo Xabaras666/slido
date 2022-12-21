@@ -4,7 +4,7 @@
     <title>Slido</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/bar.css">
-    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
   </head>
   <body>
     <div class="top_bar">
@@ -16,6 +16,26 @@
       </div>
     </div>
 
-  <h2>Hello <%= user %></h2>
+    <div id="about_user" class="container">
+      <div class="description">
+        <h2><%= user_first_name%> <%=user_last_name%></h2>
+        <p class="comment"><%= user_description%></p>
+      </div>
+      <div class="image">
+        <img id="profile_pic" src="<%=user_image%>" alt="">
+      </div>
+    </div>
+
+  <div id="lectures" class="container">
+    <% for(let i = 0; i < lectures.length; i++) { %>
+    <div class="lecture">
+      <a href="/lecture/<%=lectures[i].lecture_id%>"><%=lectures[i].title%></a>
+      <p><%=lectures[i].creation_date%></p>
+      <p><%=lectures[i].ending_date%></p>
+
+    </div>
+    <% } %>
+  </div>
+
   </body>
 </html>
