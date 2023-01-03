@@ -2,6 +2,11 @@
     background: #44475a;
     margin: 15px;
     padding: 20px;
-
+    display: flex;
+    justify-content: space-between;
 }
 
+button {
+    background: #44475a;
+    border: none
+}

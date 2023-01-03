@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Slido - Log In</title>
+    <title>New lecture</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/bar.css">
+    <link rel="stylesheet" href="/stylesheets/lecture.css">
     <link rel="stylesheet" href="/stylesheets/signup_login.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+
   </head>
   <body>
     <div class="top_bar">
@@ -17,38 +19,34 @@
         <a href="/">Slido</a>
       </div>
       <div class="right_leaning">
-        <a href="login"><img src="/images/login.png" alt="login"></a>
-        <a href="signup"><img src="/images/signup.png" alt="login"></a>
+        <a href="/"><img src="/images/logout.png" alt="logout"></a>
       </div>
     </div>
 
-    <form class="signup_login" action="login" method="POST">
-      <h2>Log In!</h2>
+    <form class="signup_login" action="newlecture" method="POST">
+      <h2>Create a new form</h2>
 
       <ul>
-        <% if(messages.success_msg) { %>
-        <li><%= messages.success_msg %></li>
-        <% } %>
-      </ul>
-
-      <ul>
-        <% if(messages.error) { %>
-        <li><%= messages.error %></li>
-        <% } %>
-
+        <% if(typeof errors != 'undefined') {%>
+          <% errors.forEach(error => { %>
+            <li><%= error.message %></li>
+          <% }) %>
+        <% }%>
       </ul>
 
       <div class="field">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
+        <label for="title">Title</label>
+        <input type="title" name="title" id="title" required>
       </div>
       <div class="field">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
+        <label for="description">Description</label>
+        <textarea name="description" id="description"></textarea>
+      </div>
+      <div class="field">
+        <label for="ending_date">Ending date</label>
+        <input type="date" name="ending_date" id="ending_date" required>
       </div>
       <button><img src="/images/next.png" alt="next"></button>
-
-      <a href="signup">Dont have an account?</a>
     </form>
 
   </body>

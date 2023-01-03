@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/bar.css">
     <link rel="stylesheet" href="/stylesheets/lecture.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
   <body>
     <div class="top_bar">
@@ -17,9 +22,12 @@
     </div>
 
   <div id="description" class="container">
-    <h2><%=title%></h2>
-    <p class="comment"><%=creation_date%></p>
-    <p class="comment"><%=ending_date%></p>
+    <div class="flex">
+      <h2><%=title%></h2>
+      <p class="comment"><%=creation_date%></p>
+      <p class="comment"><%=ending_date%></p>
+    </div>
+      <button><img id="delete" src="/images/delete.png" alt="delete" style="width: 4rem"></button>
   </div>
 
   <div class="container" id="chat">
@@ -28,4 +36,5 @@
 
 
   </body>
+  <script src="/javascripts/lecture.js"></script>
 </html>

@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/bar.css">
     <link rel="stylesheet" href="/stylesheets/dashboard.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
   <body>
     <div class="top_bar">
@@ -22,19 +27,23 @@
         <p class="comment"><%= user_description%></p>
       </div>
       <div class="image">
+        <%if(user_image != "/images/profile_pictures/null") {%>
         <img id="profile_pic" src="<%=user_image%>" alt="">
+        <%} else {%>
+          <img id="profile_pic" src="/images/plus.png">
+        <%}%>
       </div>
     </div>
 
   <div id="lectures" class="container">
     <% for(let i = 0; i < lectures.length; i++) { %>
-    <div class="lecture">
-      <a href="/lecture/<%=lectures[i].lecture_id%>"><%=lectures[i].title%></a>
-      <p><%=lectures[i].creation_date%></p>
-      <p><%=lectures[i].ending_date%></p>
-
-    </div>
+      <div class="lecture">
+        <a href="/lecture/<%=lectures[i].lecture_id%>"><%=lectures[i].title%></a>
+        <p><%=lectures[i].creation_date%></p>
+        <p><%=lectures[i].ending_date%></p>
+      </div>
     <% } %>
+    <a id="add_new_lesson" href="/lecture/newlecture">Add a new lecture</a>
   </div>
 
   </body>
