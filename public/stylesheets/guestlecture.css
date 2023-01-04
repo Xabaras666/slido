@@ -1,0 +1,54 @@
+.container {
+    background: #44475a;
+    margin: 15px;
+    padding: 20px;
+}
+
+.comment {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 22ch;
+}
+
+button {
+    background: #44475a;
+    border: none
+}
+
+.chatbox {
+    border: solid 1px #8be9fd;
+    color: #8be9fd;
+    padding: 1rem;
+}
+.chatbox p {
+    margin: 0 0 1rem 0;
+}
+.line {
+    display: flex;
+}
+
+.chat-form-container {
+    background: #282a36;
+    border: solid 1px #8be9fd;
+
+}
+
+form {
+    display: flex;
+    align-content: space-between;
+}
+
+input {
+    padding: 0 5px;
+    background: #282a36;
+    border: none;
+    outline: none;
+    color: #f8f8f2;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.chat-form-container button {
+    background: #282a36;
+    border: none
+}

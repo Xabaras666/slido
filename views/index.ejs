@@ -22,10 +22,13 @@
       </div>
     </div>
 
-    <form class="code_input" action="">
+    <form class="code_input" action="" method="POST">
       <label for="code" id="code_label">Join a thread!</label>
+      <% if(message != "") { %>
+        <p style=" color: #ff5555; font-size: 1rem; margin-bottom: -1.5rem"><%= message%></p>
+      <% } %>
       <br>
-      <input type="text" name="code" id="code" placeholder="#1234">
+      <input type="text" name="code" id="code" placeholder="1234" pattern="[0-9]{4}">
       <button><img src="/images/next.png" alt="next"></button>
       </form>
   </body>

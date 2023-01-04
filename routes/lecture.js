@@ -4,14 +4,42 @@ const { pool } = require ('../dbConfig');
 const passport = require('passport');
 
 
+router.get('/', (req, res, next) => {
+    pool.query(
+        `SELECT * FROM lecture WHERE lecture_id = $1`, [req.query.code], (err, result) => {
+            if(err){
+                throw err;
+            }
+            req.lecture = result.rows[0];
+            next()
+        }
+    )
+}, (req, res, next) => {
+    pool.query(
+        `SELECT * FROM question WHERE lecture_id = $1`, [req.query.code], (err, result) => {
+            if(err){
+                throw err;
+            }
+            req.questions = result.rows;
+            next()
+        }
+    )
+}, (req, res, next) => {
+    res.render('guestlecture', {
+        title: req.lecture.title,
+        description: req.lecture.description,
+        creation_date: req.lecture.creation_date,
+        ending_date: req.lecture.ending_date,
+        questions: req.questions})
+})
+
 router.get('/newlecture', (req, res, next) => {
-    res.render('newlecture')
+    res.render('newlecture', )
 })
 
 router.post('/newlecture', (req, res, next) => {
     let {title, code, description, ending_date} = req.body;
     let errors = [];
-    console.log(code)
 
     if(!title || !description || !ending_date) {
         errors.push({message: "Please enter all fields!"});
@@ -67,6 +95,7 @@ router.get('/:lecture_id', (req, res, next) => {
 } , (req, res, next) => {
     res.render('lecture', {
         title: req.lecture.title,
+        description: req.lecture.description,
         creation_date: req.lecture.creation_date,
         ending_date: req.lecture.ending_date})
 })
@@ -83,6 +112,7 @@ router.post('/:lecture_id/delete', (req, res, next) => {
         }
     )
 })
+
 
 
 module.exports = router;

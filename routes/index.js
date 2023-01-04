@@ -8,8 +8,28 @@ const passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {message: ""});
 });
+
+router.post('/', (req, res, next) => {
+    let code = Number(req.body.code);
+    pool.query(
+        `SELECT * FROM lecture
+        WHERE lecture_id = $1`, [code], (err, results) => {
+            if(err) {
+                throw err;
+            }
+            if(results.rows.length > 0) {
+                res.redirect(`/lecture?code=${code}`)
+            }
+            else {
+                res.render('index', {message: "Please enter a valid code!"});
+            }
+        }
+
+    )
+
+})
 
 router.get('/signup', (req, res, next) => {
   res.render('signup')
