@@ -9,8 +9,9 @@ router.get('/newlecture', (req, res, next) => {
 })
 
 router.post('/newlecture', (req, res, next) => {
-    let {title, description, ending_date} = req.body;
+    let {title, code, description, ending_date} = req.body;
     let errors = [];
+    console.log(code)
 
     if(!title || !description || !ending_date) {
         errors.push({message: "Please enter all fields!"});
@@ -22,17 +23,33 @@ router.post('/newlecture', (req, res, next) => {
         let current_lecturer = req.user.lecturer_id;
         let current_date = new Date();
 
-        pool.query(
-            `INSERT INTO lecture (lecturer_id, title, description, creation_date, ending_date)
-            VALUES ($1, $2, $3, $4, $5)`,
-            [current_lecturer, title, description, current_date, ending_date],
-            (err, result) => {
-                if(err) {
-                    throw err;
+        if(code == "") {
+            pool.query(
+                `INSERT INTO lecture (lecturer_id, title, description, creation_date, ending_date)
+                VALUES ($1, $2, $3, $4, $5)`,
+                [current_lecturer, title, description, current_date, ending_date],
+                (err, result) => {
+                    if(err) {
+                        throw err;
+                    }
+                    res.redirect('/user/dashboard')
                 }
-                res.redirect('/user/dashboard')
-            }
-        )
+            )
+        }
+        else {
+            pool.query(
+                `INSERT INTO lecture (lecture_id, lecturer_id, title, description, creation_date, ending_date)
+                VALUES ($1, $2, $3, $4, $5, $6)`,
+                [code, current_lecturer, title, description, current_date, ending_date],
+                (err, result) => {
+                    if(err) {
+                        throw err;
+                    }
+                    res.redirect('/user/dashboard')
+                }
+            )
+        }
+
     }
 })
 

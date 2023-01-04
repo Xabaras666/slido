@@ -39,8 +39,10 @@
     <% for(let i = 0; i < lectures.length; i++) { %>
       <div class="lecture">
         <a href="/lecture/<%=lectures[i].lecture_id%>"><%=lectures[i].title%></a>
-        <p><%=lectures[i].creation_date%></p>
-        <p><%=lectures[i].ending_date%></p>
+        <span class="comment">#<%= lectures[i].lecture_id %></span>
+        <p class="date">Start: <%=lectures[i].creation_date  %></p>
+        <p class="date">End:  ㅤ   ㅤ  <%=lectures[i].ending_date%></p>
+        <p class="comment"><%=lectures[i].description%></p>
       </div>
     <% } %>
     <a id="add_new_lesson" href="/lecture/newlecture">Add a new lecture</a>
