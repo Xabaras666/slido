@@ -62,7 +62,7 @@ router.post('/:lecture_id/delete', (req, res, next) => {
             if (err) {
                 throw err;
             }
-            return res.redirect('/user/dashboard')
+            //res.redirect('/user/dashboard')
         }
     )
 })
