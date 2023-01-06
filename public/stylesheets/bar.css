@@ -7,6 +7,12 @@
     height: 30px;
 }
 
+.top_bar button {
+    height: 30px;
+    background: #44475a;
+    border: none
+}
+
 .top_bar a {
     text-decoration: none;
     color: #8be9fd;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { pool } = require ('../dbConfig');
-
+const passport = require('passport');
 
 
 router.get('/dashboard', (req, res, next) => {
@@ -23,5 +23,12 @@ router.get('/dashboard', (req, res, next) => {
                                          user_image: req.user.image.slice(6),
                                          lectures: req.lectures})
 })
+
+router.post('/logout', function(req, res, next) {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
+});
 
 module.exports = router;
