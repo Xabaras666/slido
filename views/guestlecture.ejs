@@ -40,7 +40,11 @@
             <p style="padding-right: 1rem"><%= i %></p>
             <p><%=questions[i].text%></p>
           </div>
-
+          <%for(let j = 0; j < answers.length; j++) {%>
+            <%if(answers[j].question_id == questions[i].question_id) {%>
+              <p class="answered"><%=answers[j].text%></p>
+            <%}%>
+          <%}%>
         <%}%>
       </div>
       <div class="chat-form-container">

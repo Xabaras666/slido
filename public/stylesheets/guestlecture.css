@@ -12,7 +12,8 @@
 
 button {
     background: #44475a;
-    border: none
+    border: none;
+    flex: 0;
 }
 
 .chatbox {
@@ -22,12 +23,17 @@ button {
     height: 400px;
     overflow-y: scroll;
 }
-.chatbox p {
-    margin: 0 0 1rem 0;
-}
+
 .line {
     display: flex;
 }
+
+.answered {
+    background: #282a36;
+    height: 1.5rem;
+    margin: 1px;
+}
+
 
 .chat-form-container {
     background: #282a36;
@@ -37,7 +43,6 @@ button {
 
 form {
     display: flex;
-    align-content: space-between;
 }
 
 input {
@@ -48,6 +53,7 @@ input {
     color: #f8f8f2;
     height: 2rem;
     font-size: 1rem;
+    flex: 1;
 }
 
 .chat-form-container button {
