@@ -19,6 +19,8 @@ button {
     border: solid 1px #8be9fd;
     color: #8be9fd;
     padding: 1rem;
+    height: 400px;
+    overflow-y: scroll;
 }
 .chatbox p {
     margin: 0 0 1rem 0;

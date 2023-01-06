@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('slido:server');
 var http = require('http');
+const socketio = require('socket.io')
+const { pool } = require ('../dbConfig');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +22,30 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+const io = socketio(server)
+
+
+/**
+ * SOCKET.IO PART
+ */
+io.on('connection', socket => {
+  socket.on('chatMessage', (msg, code) => {
+
+    socket.join(code)
+
+    io.to(code).emit('message', msg);
+  pool.query(`INSERT INTO question (lecture_id, text)
+            VALUES ($1, $2)`, [code, msg],
+      (err, result) => {
+        if(err) {
+          throw err;
+        }
+    })
+  })
+})
+
+
+
 
 
 /**

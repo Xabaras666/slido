@@ -27,11 +27,15 @@ router.get('/', (req, res, next) => {
 }, (req, res, next) => {
     res.render('guestlecture', {
         title: req.lecture.title,
+        code: req.query.code,
         description: req.lecture.description,
         creation_date: req.lecture.creation_date,
         ending_date: req.lecture.ending_date,
         questions: req.questions})
 })
+
+
+
 
 router.get('/newlecture', (req, res, next) => {
     res.render('newlecture', )

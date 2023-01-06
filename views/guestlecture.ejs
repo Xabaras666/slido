@@ -24,6 +24,7 @@
 
     <div id="description" class="container">
         <h2><%=title%></h2>
+      <span id="code"><%=code%></span>
         <p class="comment">Start: <%=creation_date%></p>
         <p class="comment">End:  ㅤ   ㅤ  <%=ending_date%></p>
         <p><%=description%></p>
@@ -43,7 +44,7 @@
         <%}%>
       </div>
       <div class="chat-form-container">
-        <form id="chat-form">
+        <form id="chat-form" method="POST">
           <input
                   id="msg"
                   type="text"
@@ -55,6 +56,9 @@
         </form>
       </div>
     </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src ="javascripts/chat.js"></script>
 
   </body>
 </html>
