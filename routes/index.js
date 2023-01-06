@@ -4,6 +4,18 @@ const bcrypt = require('bcrypt');
 const { pool } = require ('../dbConfig');
 const passport = require('passport');
 
+const multer = require('multer');
+const path = require("path");
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/profile_pictures')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage})
 
 
 /* GET home page. */
@@ -35,9 +47,9 @@ router.get('/signup', (req, res, next) => {
   res.render('signup')
 })
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', upload.single("image"), async (req, res, next) => {
   let { email, first_name, last_name, password, re_password, description} = req.body;
-
+  let imagePath = req.file.path;
   let errors = [];
 
   if(!email || !first_name || !last_name || !password || !re_password) {
@@ -70,10 +82,10 @@ router.post('/signup', async (req, res, next) => {
           }
           else {
             pool.query(
-                `INSERT INTO lecturer (email, password, first_name, last_name, lecturer_description)
-                VALUES ($1, $2, $3, $4, $5)
+                `INSERT INTO lecturer (email, password, first_name, last_name, lecturer_description, image)
+                VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING lecturer_id, password`,
-                [email, hashedPassword, first_name, last_name,description],
+                [email, hashedPassword, first_name, last_name,description, imagePath],
                 (err, result) => {
                   if(err) {
                     throw err;

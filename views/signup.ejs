@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <form class="signup_login" action="signup" method="POST">
+    <form class="signup_login" action="signup" method="POST" enctype="multipart/form-data">
       <h2>Sign Up!</h2>
 
       <ul>
@@ -51,6 +51,9 @@
       </div><div class="field">
         <label for="re_password">Confirm Password</label>
         <input type="password" name="re_password" id="re_password" required>
+      </div>
+      </div><div class="field">
+        <input type="file" name="image" required>
       </div>
       <br>
       <label for="description">Description</label>
