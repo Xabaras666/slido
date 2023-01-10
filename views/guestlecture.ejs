@@ -36,15 +36,18 @@
 
       <div class="chatbox">
         <%for(let i = 0; i < questions.length; i++) {%>
-          <div class="line">
+          <div class="line" id="<%= questions[i].question_id%>">
             <p style="padding-right: 1rem"><%= i %></p>
             <p><%=questions[i].text%></p>
           </div>
-          <%for(let j = 0; j < answers.length; j++) {%>
-            <%if(answers[j].question_id == questions[i].question_id) {%>
-              <p class="answered"><%=answers[j].text%></p>
+          <div id="answers<%=questions[i].question_id%>">
+            <%for(let j = 0; j < answers.length; j++) {%>
+              <%if(answers[j].question_id == questions[i].question_id) {%>
+                <p class="answered"><%=answers[j].text%></p>
+              <%}%>
             <%}%>
-          <%}%>
+          </div>
+
         <%}%>
       </div>
       <div class="chat-form-container">

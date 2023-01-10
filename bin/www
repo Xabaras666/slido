@@ -28,19 +28,48 @@ const io = socketio(server)
 /**
  * SOCKET.IO PART
  */
-io.on('connection', socket => {
-  socket.on('chatMessage', (msg, code) => {
 
+io.on('connection', socket => {
+
+  socket.on('joinRoom', (code) => {
+    socket.join(code)
+  })
+
+  socket.on('chatMessage', (msg, code) => {
     socket.join(code)
 
-    io.to(code).emit('message', msg);
   pool.query(`INSERT INTO question (lecture_id, text)
-            VALUES ($1, $2)`, [code, msg],
+            VALUES ($1, $2) RETURNING question_id`, [code, msg],
       (err, result) => {
         if(err) {
           throw err;
         }
+        else {
+          let question_id = result.rows;
+
+          io.to(code).emit('message', {question: msg, id: question_id});
+        }
     })
+
+
+  })
+
+  socket.on('answerMessage', (answer, code, id) => {
+    socket.join(code);
+
+
+    pool.query(`INSERT INTO answer (question_id, text)
+                VALUES ($1, $2)`, [id, answer],
+        (err, result) => {
+          if(err) {
+            throw err;
+          }
+          else {
+            io.to(code).emit('answer', {ans: answer, ID: id});
+          }
+        })
+
+
   })
 })
 

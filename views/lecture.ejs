@@ -44,21 +44,26 @@
         <p style="padding-right: 1rem"><%= i %></p>
         <p><%=questions[i].text%></p>
       </div>
+
+      <div id="<%=questions[i].question_id%>">
         <%for(let j = 0; j < answers.length; j++) {%>
           <%if(answers[j].question_id == questions[i].question_id) {%>
             <p class="answer"><%=answers[j].text%></p>
           <%}%>
         <%}%>
+      </div>
+
       <div class="answer">
-        <form>
-          <input type="text">
-          <button id="answer-btn"><img style="height: 1rem;" src="/images/next.png" alt="next"></button>
+        <form class="answer-form" id="<%= questions[i].question_id%>">
+          <input id="msg" type="text" placeholder="Enter Answer" required autocomplete="off">
+          <button type="submit" id="answer-btn"><img style="height: 1rem;" src="/images/next.png" alt="next"></button>
         </form>
       </div>
     <%}%>
     </div>
   </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/javascripts/lecture.js"></script>
   </body>
 </html>
