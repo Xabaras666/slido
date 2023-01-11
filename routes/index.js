@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
             if(err) {
                 throw err;
             }
-            if(results.rows.length > 0) {
+            if(results.rows.length > 0 && results.rows[0].status) {
                 res.redirect(`/lecture?code=${code}`)
             }
             else {
@@ -42,6 +42,11 @@ router.post('/', (req, res, next) => {
     )
 
 })
+
+router.get('/share/:id', (req, res, next) => {
+    res.render('share', {code: req.params.id})
+})
+
 
 router.get('/signup', (req, res, next) => {
   res.render('signup')

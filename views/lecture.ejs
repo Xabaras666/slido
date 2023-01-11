@@ -22,8 +22,7 @@
         </form>
       </div>
     </div>
-
-  <div id="description" class="container">
+  <div id="description" class="container" style="background: url('../<%=image%>');  background-size: cover; opacity: 0.75;">
     <div class="flex">
       <h2><%=title%></h2>
       <p id="code"><%=code%></p>
@@ -31,7 +30,12 @@
       <p class="comment">End:  ㅤ   ㅤ  <%=ending_date%></p>
       <p><%=description%></p>
     </div>
+    <%if (status == true) {%>
       <button><img id="delete" src="/images/delete.png" alt="delete" style="width: 4rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
+    <%} else {%>
+      <button><img id="delete" src="/images/next.png" alt="return lecture" style="width: 4rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
+
+    <%}%>
   </div>
 
 

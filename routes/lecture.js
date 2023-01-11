@@ -3,6 +3,18 @@ var router = express.Router();
 const { pool } = require ('../dbConfig');
 const passport = require('passport');
 
+const multer = require('multer');
+const path = require("path");
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/lecture_covers')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storage})
 
 router.get('/', (req, res, next) => {
     pool.query(
@@ -53,8 +65,9 @@ router.get('/newlecture', (req, res, next) => {
     res.render('newlecture', )
 })
 
-router.post('/newlecture', (req, res, next) => {
+router.post('/newlecture', upload.single("image"), (req, res, next) => {
     let {title, code, description, ending_date} = req.body;
+    let imagePath = req.file.path;
     let errors = [];
 
     if(!title || !description || !ending_date) {
@@ -69,9 +82,9 @@ router.post('/newlecture', (req, res, next) => {
 
         if(code == "") {
             pool.query(
-                `INSERT INTO lecture (lecturer_id, title, description, creation_date, ending_date)
-                VALUES ($1, $2, $3, $4, $5)`,
-                [current_lecturer, title, description, current_date, ending_date],
+                `INSERT INTO lecture (lecturer_id, title, description, creation_date, ending_date, image)
+                VALUES ($1, $2, $3, $4, $5, $6)`,
+                [current_lecturer, title, description, current_date, ending_date, imagePath],
                 (err, result) => {
                     if(err) {
                         throw err;
@@ -137,13 +150,15 @@ router.get('/:lecture_id', (req, res, next) => {
         description: req.lecture.description,
         creation_date: req.lecture.creation_date,
         ending_date: req.lecture.ending_date,
+        image: req.lecture.image.slice(7),
+        status: req.lecture.status,
         questions: req.questions,
         answers: req.answers})
 })
 
 router.post('/:lecture_id/delete', (req, res, next) => {
     pool.query(
-        `DELETE FROM lecture WHERE lecture_id = $1`,
+        `UPDATE lecture SET status = NOT status WHERE lecture_id = $1`,
         [req.params.lecture_id],
         (err, result) => {
             if (err) {

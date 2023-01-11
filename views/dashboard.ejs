@@ -37,7 +37,9 @@
     <% for(let i = 0; i < lectures.length; i++) { %>
       <div class="lecture">
         <a href="/lecture/<%=lectures[i].lecture_id%>"><%=lectures[i].title%></a>
+        <button class="share" id="<%=lectures[i].lecture_id%>" onclick="location.href = 'http://localhost:3000/share/<%=lectures[i].lecture_id%>'">Share</button>
         <span class="comment">#<%= lectures[i].lecture_id %></span>
+        <span class="comment"> Visible: <%=lectures[i].status%></span>
         <p class="date">Start: <%=lectures[i].creation_date  %></p>
         <p class="date">End:  ㅤ   ㅤ  <%=lectures[i].ending_date%></p>
         <p class="comment"><%=lectures[i].description%></p>
@@ -46,5 +48,6 @@
     <a id="add_new_lesson" href="/lecture/newlecture">Add a new lecture</a>
   </div>
 
+    <script src="/javascripts/dashboard.js"></script>
   </body>
 </html>

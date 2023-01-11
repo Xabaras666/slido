@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <form class="signup_login" action="newlecture" method="POST">
+    <form class="signup_login" action="newlecture" method="POST" enctype="multipart/form-data">
       <h2>Create a new form</h2>
 
       <ul>
@@ -49,6 +49,9 @@
       <div class="field">
         <label for="ending_date">Ending date</label>
         <input type="date" name="ending_date" id="ending_date" required>
+      </div>
+      <div class="field">
+        <input type="file" name="image" required>
       </div>
       <button><img src="/images/next.png" alt="next"></button>
     </form>

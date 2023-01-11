@@ -16,7 +16,6 @@ router.get('/dashboard', (req, res, next) => {
         }
     )
 }, (req, res, next) => {
-    console.log(req.user.image.slice(6))
   res.render('dashboard', { user_first_name: req.user.first_name,
                                          user_last_name: req.user.last_name,
                                          user_description: req.user.lecturer_description,
