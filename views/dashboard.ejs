@@ -40,6 +40,17 @@
         <button class="share" id="<%=lectures[i].lecture_id%>" onclick="location.href = 'http://localhost:3000/share/<%=lectures[i].lecture_id%>'">Share</button>
         <span class="comment">#<%= lectures[i].lecture_id %></span>
         <span class="comment"> Visible: <%=lectures[i].status%></span>
+        <div class="statistics">
+          <p>Number of total questions: <%=lectures[i].number_of_questions%></p>
+          <%
+            let unanswered = 0;
+            for(let j = 0; j < questions.length; j++)
+              if(questions[j].lecture_id ==  lectures[i].lecture_id && questions[j].answered == false) {
+                unanswered++;
+              }
+          %>
+          <p>Number of unanswered questions: <%= unanswered%> </p>
+        </div>
         <p class="date">Start: <%=lectures[i].creation_date  %></p>
         <p class="date">End:  ㅤ   ㅤ  <%=lectures[i].ending_date%></p>
         <p class="comment"><%=lectures[i].description%></p>

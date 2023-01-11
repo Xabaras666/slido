@@ -6,6 +6,7 @@
     justify-content: space-between;
     color: #8be9fd;
     font-weight: bold;
+    text-shadow: 1px 1px black;
 }
 
 .comment {

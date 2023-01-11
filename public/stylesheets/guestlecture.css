@@ -2,6 +2,14 @@
     background: #44475a;
     margin: 15px;
     padding: 20px;
+
+}
+
+#description {
+
+    color: #8be9fd;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
 }
 
 .comment {

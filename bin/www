@@ -47,7 +47,17 @@ io.on('connection', socket => {
         else {
           let question_id = result.rows;
 
-          io.to(code).emit('message', {question: msg, id: question_id});
+          pool.query(`UPDATE lecture
+                      SET number_of_questions = number_of_questions + 1
+                      WHERE lecture_id = $1`, [code],
+              (err, result) => {
+                if(err) {
+                  throw err;
+                }
+                else {
+                  io.to(code).emit('message', {question: msg, id: question_id});
+                }
+          })
         }
     })
 
@@ -65,7 +75,17 @@ io.on('connection', socket => {
             throw err;
           }
           else {
-            io.to(code).emit('answer', {ans: answer, ID: id});
+            pool.query(`UPDATE question
+                        SET answered = true
+                        WHERE question_id = $1`, [id],
+                (err, result) => {
+                  if(err) {
+                    throw err;
+                  }
+                  else {
+                    io.to(code).emit('answer', {ans: answer, ID: id});
+                  }
+                })
           }
         })
 

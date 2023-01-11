@@ -54,6 +54,7 @@ router.get('/', (req, res, next) => {
         description: req.lecture.description,
         creation_date: req.lecture.creation_date,
         ending_date: req.lecture.ending_date,
+        image: req.lecture.image.slice(7),
         questions: req.questions,
         answers: req.answers})
 })

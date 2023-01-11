@@ -12,15 +12,27 @@ router.get('/dashboard', (req, res, next) => {
                 throw err;
             }
             req.lectures = results.rows;
-            return next()
+            next()
         }
     )
 }, (req, res, next) => {
+    pool.query(
+        `SELECT * FROM question`, (err, results) => {
+            if(err) {
+                throw err;
+            }
+            req.questions = results.rows;
+            next();
+        }
+    )
+}, (req, res, next) => {
+
   res.render('dashboard', { user_first_name: req.user.first_name,
                                          user_last_name: req.user.last_name,
                                          user_description: req.user.lecturer_description,
                                          user_image: req.user.image.slice(6),
-                                         lectures: req.lectures})
+                                         lectures: req.lectures,
+                                         questions: req.questions})
 })
 
 router.post('/logout', function(req, res, next) {
