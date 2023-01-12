@@ -62,6 +62,25 @@
           <button><img style="height: 1rem;" src="/images/next.png" alt="next"></button>
         </form>
       </div>
+
+      <div class="grade">
+        <%
+          let avg = 0;
+          for(let i = 0; i < grades.length; i++) {
+            avg += grades[i].grade;
+          }
+          avg = avg / grades.length;
+        %>
+        <p>Grade: <%=avg%></p>
+
+        <form action="/lecture?code=<%=code%>" id="grade" method="POST">
+          <button name="butt" value='1' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>
+          <button name="butt" value='2' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>
+          <button name="butt" value='3' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>
+          <button name="butt" value='4' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>
+          <button name="butt" value='5' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>
+        </form>
+      </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

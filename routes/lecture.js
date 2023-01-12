@@ -48,6 +48,19 @@ router.get('/', (req, res, next) => {
     )
 
 }, (req, res, next) => {
+    pool.query(
+        `SELECT * FROM grades
+        WHERE lecture_id = $1`, [req.query.code],
+        (err, result) => {
+            if(err) {
+                throw err;
+            }
+            req.grades = result.rows
+            next();
+        }
+    )
+
+}, (req, res, next) => {
     res.render('guestlecture', {
         title: req.lecture.title,
         code: req.query.code,
@@ -55,11 +68,18 @@ router.get('/', (req, res, next) => {
         creation_date: req.lecture.creation_date,
         ending_date: req.lecture.ending_date,
         image: req.lecture.image.slice(7),
+        grades: req.grades,
         questions: req.questions,
         answers: req.answers})
 })
 
+router.post('/', (req, res, next) => {
+    pool.query(
+        `INSERT INTO grades (lecture_id, grade) VALUES ($1, $2)`, [req.query.code, req.body.butt]
+    )
 
+    res.redirect('back');
+})
 
 
 router.get('/newlecture', (req, res, next) => {

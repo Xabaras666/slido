@@ -56,3 +56,5 @@ function outputAnswer(answer, id) {
 
     document.getElementById(ID).appendChild(div)
 }
+
+// GRADE LECTURE

@@ -68,3 +68,7 @@ input {
     background: #282a36;
     border: none
 }
+
+.grade_button:hover img {
+    content: url("../images/fullStar.png");
+}

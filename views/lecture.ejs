@@ -30,18 +30,17 @@
       <p class="comment">End:  ㅤ   ㅤ  <%=ending_date%></p>
       <p><%=description%></p>
     </div>
-    <%if (status == true) {%>
-      <button><img id="delete" src="/images/delete.png" alt="delete" style="width: 4rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
-    <%} else {%>
-      <button><img id="delete" src="/images/next.png" alt="return lecture" style="width: 4rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
 
-    <%}%>
   </div>
 
 
   <div id="chat">
     <h2>Chat</h2>
-
+    <%if (status == true) {%>
+      <button><img id="delete" src="/images/delete.png" alt="delete" style="width: 2rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
+    <%} else {%>
+      <button><img id="delete" src="/images/next.png" alt="return lecture" style="width: 2rem" onclick="location.href = 'http://localhost:3000/user/dashboard'"></button>
+    <%}%>
     <div class="chatbox">
     <%for(let i = 0; i < questions.length; i++) {%>
       <div class="line">
