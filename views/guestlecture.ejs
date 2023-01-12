@@ -71,7 +71,7 @@
           }
           avg = avg / grades.length;
         %>
-        <p>Grade: <%=avg%></p>
+        <p>Grade: <%=avg.toFixed(2)%></p>
 
         <form action="/lecture?code=<%=code%>" id="grade" method="POST">
           <button name="butt" value='1' class="grade_button"><img style="height: 2rem" src="/images/star.png" alt="star"></button>

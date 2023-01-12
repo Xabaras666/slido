@@ -54,6 +54,20 @@
         <p class="date">Start: <%=lectures[i].creation_date  %></p>
         <p class="date">End:  ㅤ   ㅤ  <%=lectures[i].ending_date%></p>
         <p class="comment"><%=lectures[i].description%></p>
+        <div class="grade">
+          <%
+            let avg = 0;
+            let count = 0;
+            for(let j = 0; j < grades.length; j++) {
+              if(grades[j].lecture_id == lectures[i].lecture_id) {
+                avg += grades[j].grade;
+                count++;
+              }
+            }
+            avg = avg / count;
+          %>
+          <p>Grade: <%=avg.toFixed(2)%></p>
+        </div>
       </div>
     <% } %>
     <a id="add_new_lesson" href="/lecture/newlecture">Add a new lecture</a>
